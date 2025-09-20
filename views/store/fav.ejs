@@ -2,20 +2,23 @@
 </head>
 <body>
 <%- include('../partials/nav.ejs') %>
-    <main class="min-h-screen bg-gray-50 p-8">
-    <!-- Hero Section -->
-    <section class="text-center py-16">
-        <h1 class="text-4xl font-extrabold text-gray-800 mb-4">Welcome to Homies</h1>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Showcase your elegant villas, modern apartments, or serene retreats. 
-        Let guests indulge in comfort, style, and unforgettable stays while your home becomes part of their luxury experience. 
-        </p>
-        <a href="#"
-        class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
-        + Register Your Home
-        </a>
-    </section>
-    </main>
-    
+    <main class="min-h-screen bg-gray-100 p-8">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Your Favorite Homes:</h1>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+            <img src="" alt="Home image" class="w-full h-48 object-cover">
+            <div class="p-4 space-y-2">
+            <h2 class="text-lg font-bold text-gray-800"></h2>
+            <p class="text-gray-600"></p>
+            <p class="text-yellow-500"></p>
+            <p class="text-blue-600 font-semibold"></p>
+            <button type="submit" class="bg-green-500 p-2 text-white rounded-xl w-20">book</button>
+            <form action="#" method="POST">
+                <button type="submit" class="bg-red-500 p-2 text-white rounded-xl w-20">remove</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </main>    
 </body>
 </html>
