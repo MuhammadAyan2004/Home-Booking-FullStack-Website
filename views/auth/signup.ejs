@@ -10,22 +10,22 @@
         <!-- First + Last Name -->
         <div class="flex gap-2">
           <div class="w-full">
-            <input type="text" name="FirstName" placeholder="First Name" value="<%= oldInputs?.FirstName || '' %>" required class="w-full px-4 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+            <input type="text" name="FirstName" placeholder="First Name" value="" required class="w-full px-4 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
           </div>
 
           <div class="w-full">
-            <input type="text" name="lastName" placeholder="Last Name" value="<%= oldInputs?.lastName || '' %>" required class="w-full px-4 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+            <input type="text" name="lastName" placeholder="Last Name" value="" required class="w-full px-4 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
           </div>
         </div>
 
         <!-- Email -->
         <div>
-          <input type="email" name="Email" placeholder="Email Address" value="<%= oldInputs?.Email || '' %>" required class="w-full px-4 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+          <input type="email" name="Email" placeholder="Email Address" value="" required class="w-full px-4 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
         </div>
 
         <!-- Password -->
         <div>
-          <input type="password" name="password" placeholder="Password" value="<%= oldInputs?.password || '' %>" required class="w-full px-4 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+          <input type="password" name="password" placeholder="Password" value="" required class="w-full px-4 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
         </div>
 
         <!-- Confirm Password -->
@@ -37,8 +37,8 @@
         <div>
           <select id="accountType" name="accountType" class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-400 focus:outline-none">
             <option value="">-- Select Account Type --</option>
-            <option value="host" <%= oldInputs?.accountType === 'host' ? 'selected' : '' %>>Host</option>
-            <option value="user" <%= oldInputs?.accountType === 'user' ? 'selected' : '' %>>User</option>
+            <option value="host" >Host</option>
+            <option value="user" >User</option>
           </select>
         </div>
 
