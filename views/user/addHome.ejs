@@ -5,20 +5,20 @@
     <main class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
         <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
             <h1 class="text-2xl font-bold text-center text-gray-800 mb-6"> Registeration form:</h1>
-            <form action="/host/registration" method="post" class="space-y-4">
-            <input type="hidden" name="id" value="1">
-            <input type="text" name="userName" placeholder="Enter your name" value="" required
+            <form action="<%= editing ? '/host/editHome' :'/host/registration' %>" method="post" class="space-y-4">
+            <input type="hidden" name="id" value="<%= editing ? edithome._id : '' %>">
+            <input type="text" name="userName" placeholder="Enter your name" value="<%= editing ? edithome.houseName : '' %>" required
                 class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-            <input type="text" name="location" placeholder="Enter home location" value="" required
+            <input type="text" name="location" placeholder="Enter home location" value="<%= editing ? edithome.location : '' %>" required
                 class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-            <input type="text" name="price" placeholder="Per night price" value="" required
+            <input type="text" name="price" placeholder="Per night price" value="<%= editing ? edithome.price : '' %>" required
                 class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-            <input type="text" name="rating" placeholder="Rate it" value="" required
+            <input type="text" name="rating" placeholder="Rate it" value="<%= editing ? edithome.rating : '' %>" required
                 class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-            <input type="url" name="pic" placeholder="Enter your pic URL" value="" required
+            <input type="url" name="pic" placeholder="Enter your pic URL" value="<%= editing ? edithome.pic : '' %>" required
                 class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-            <textarea name="description" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="you can describe your home here" required></textarea>
-            <input type="submit" value="Submit"
+            <textarea name="description" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="you can describe your home here" required><%= editing ? edithome.description : '' %></textarea>
+            <input type="submit" value="<%= editing ? 'Edit' : 'Submit' %>"
                 class="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition" />
             </form>
         </div>
