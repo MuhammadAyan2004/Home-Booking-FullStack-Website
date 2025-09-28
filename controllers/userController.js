@@ -46,7 +46,18 @@ exports.getEdithome = async (req,res)=>{
 }
 exports.postEdithome = async (req,res)=>{
     const {id,userName,location,price,rating,pic,description} = req.body
-    const home = await homeSchema.findByIdAndUpdate(id,{houseName:userName,location,price,rating,pic,description},{new:true})
+    await homeSchema.findByIdAndUpdate(id,{houseName:userName,location,price,rating,pic,description},{new:true})
+        try {
+            res.redirect('/host/homes')   
+        } 
+        catch(err){
+            console.log("could not found your home:", err);
+        }
+}
+exports.getDelhome = async (req,res)=>{
+    console.log(req.params.homeId);
+    const homeId = req.params.homeId;
+    await homeSchema.findByIdAndDelete(homeId)
         try {
             res.redirect('/host/homes')   
         } 
