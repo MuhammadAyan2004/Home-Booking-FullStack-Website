@@ -8,5 +8,6 @@ userRouter.get('/host/homes',userController.addedHome)
 userRouter.post('/host/registration',userController.postRegistration)
 userRouter.get('/host/editHome/:homeId',userController.getEdithome)
 userRouter.post('/host/editHome/',userController.postEdithome)
+userRouter.post('/host/delete/:homeId',userController.getDelhome)
 
 module.exports = userRouter
