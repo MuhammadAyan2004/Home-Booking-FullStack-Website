@@ -4,7 +4,8 @@ exports.getRegistration = (req,res)=>{
     res.render('user/addHome',{
         pageTitle: "Homies",
         activePage: "index",
-        edithome:false
+        edithome:false,
+        editing:false,
     })
 }
 
@@ -13,7 +14,7 @@ exports.postRegistration = (req,res)=>{
     const home = homeSchema({houseName:userName,location,price,rating,pic,description})
     home.save()
     res.render('user/registerhome',{
-        pageTitle: "Homies",
+        pageTitle: "registered",
         activePage: "index"
     })
 }
@@ -26,23 +27,25 @@ exports.addedHome = async (req,res)=>{
     })
 }
 
-exports.getEdithome = async (req,res)=>{
+exports.getEdithome =(req,res)=>{
     console.log(req.params.homeId);
     const homeId = req.params.homeId;
-    const editing = req.query.editing === 'true'
+    const edit = req.query.editing === 'true'
+    console.log(edit);
 
-    const home = await homeSchema.findById(homeId)
-        try {
-            res.render('user/addHome',{
-                pageTitle: "Edit Home",
-                activePage: "index",
-                edithome:home,
-                editing,
-            })   
-        } 
-        catch(err){
-            console.log("could not found your home:", err);
-        }
+    homeSchema.findById(homeId)
+    .then(home=>{
+        res.render('host/addHome',{
+            pageTitle: "Edit Home",
+            activePage: "index",
+            edithome:home,
+            editing:edit
+        })
+    })
+    .catch(err=>{
+        console.log("could not found your home:", err);
+
+    })
 }
 exports.postEdithome = async (req,res)=>{
     const {id,userName,location,price,rating,pic,description} = req.body
