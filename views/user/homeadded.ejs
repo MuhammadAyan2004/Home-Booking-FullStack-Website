@@ -20,7 +20,7 @@
           <p class="text-blue-600 font-semibold">⭐ <%= home.rating %></p>
           <div class="flex gap-2">
             <a href="/host/editHome/<%= home._id %>/?editing=true" class="bg-green-700 text-white p-2 px-4 w-16 rounded-xl hover:bg-green-800">Edit</a>
-            <form action="#" method="POST">
+            <form action="/host/delete/<%= home._id %>" method="POST">
               <button type="submit" class="bg-red-600 text-white p-2 w-24 rounded-xl hover:bg-red-700">Delete</button>
             </form>
           </div>
