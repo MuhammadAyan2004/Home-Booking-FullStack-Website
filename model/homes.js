@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 
 const homeSchema = new mongoose.Schema({
     houseName:{type:String, required:true},
