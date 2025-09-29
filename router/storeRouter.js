@@ -5,7 +5,9 @@ const storeRouter = express.Router()
 
 storeRouter.get('/',storeController.getIndex)
 storeRouter.get('/homeList',storeController.getHomes)
+storeRouter.get('/homeList/:homeId',storeController.getdetails)
 storeRouter.get('/favorite',storeController.getFav)
+storeRouter.post('/favorite/:homeId',storeController.postaddFav)
 storeRouter.get('/bookings',storeController.getBook)
 
 
