@@ -5,19 +5,21 @@
     <main class="min-h-screen bg-gray-100 p-8">
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Your Favorite Homes:</h1>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <% booking.forEach(home => { %>    
         <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
-            <img src="" alt="Home image" class="w-full h-48 object-cover">
+            <img src="<%= home._id.pic %>" alt="Home image" class="w-full h-48 object-cover">
             <div class="p-4 space-y-2">
-            <h2 class="text-lg font-bold text-gray-800"></h2>
-            <p class="text-gray-600"></p>
-            <p class="text-yellow-500"></p>
-            <p class="text-blue-600 font-semibold"></p>
+            <h2 class="text-lg font-bold text-gray-800"><%= home._id.houseName %></h2>
+            <p class="text-gray-600"><%= home._id.price %></p>
+            <p class="text-yellow-500"><%= home._id.rating %></p>
+            <p class="text-blue-600 font-semibold"><%= home._id.location %></p>
             <button type="submit" class="bg-green-500 p-2 text-white rounded-xl w-20">book</button>
-            <form action="#" method="POST">
+            <form action="/favorites/<%= home._id._id%>" method="POST">
                 <button type="submit" class="bg-red-500 p-2 text-white rounded-xl w-20">remove</button>
             </form>
             </div>
         </div>
+        <% }) %>
         </div>
     </main>    
 </body>
