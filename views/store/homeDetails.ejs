@@ -29,7 +29,10 @@
            class="w-[20vh] text-center bg-gray-400 text-gray-100 font-semibold py-3 rounded-xl hover:bg-gray-600 transition">
           Back
         </a>
-        <%- include('../partials/fav.ejs') %>
+        <form action="/favorite" method="POST">
+          <button type="submit" class="bg-green-500 text-white font-semibold py-3 px-4 rounded-xl hover:bg-green-600 transition"> Add to Favorite </button>
+          <input type="hidden" name="id" value="<%= home._id %>">
+        </form>
       </div>
     </div>
   </main>
