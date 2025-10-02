@@ -1,4 +1,5 @@
 const homeSchema = require("../model/homes")
+const fav = require("../model/fav")
 
 exports.getIndex = (req,res)=>{
     res.render('index',{
@@ -23,17 +24,50 @@ exports.getdetails = async (req,res)=>{
         home:home,
     })
 }
-exports.getFav = (req,res)=>{
-    res.render('store/fav',{
-        pageTitle: "Favorite home",
-        activePage: "favorite"
-    })
+exports.getFav = async (req,res)=>{
+    try{
+        const favs = await fav.find().populate('_id')
+        res.render('store/fav',{
+            pageTitle: "Favorite home",
+            activePage: "favorite",
+            booking:favs
+        })
+    }
+    catch(err){
+        console.log(err);
+        res.redirect("/favorites")
+    }
 }
-exports.postaddFav = (req,res)=>{
-    res.render('store/fav',{
-        pageTitle: "Favorite home",
-        activePage: "favorite"
-    })
+
+exports.postaddFav = async (req,res)=>{
+    try{
+        const homeId = req.body.id
+        const existingHome = await fav.findById(homeId)
+        
+        if(existingHome){
+            return res.redirect('/favorites')
+        }
+
+        const favs = new fav({_id:homeId})
+        await favs.save()
+        return res.redirect("/favorites")
+    }
+    catch(err){
+        console.log(err);
+        res.redirect("/homeList")
+    }
+}
+
+exports.postDelFav = async (req,res)=>{
+    const homeId = req.params.homeId
+    await fav.findByIdAndDelete(homeId)
+    try{
+        res.redirect("/favorites")
+    }
+    catch(err){
+        console.log(err);
+        res.redirect("/favorites")
+    }
 }
 exports.getBook = (req,res)=>{
     res.render('store/book',{
