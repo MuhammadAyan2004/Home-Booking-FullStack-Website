@@ -18,7 +18,10 @@
           <p class="text-blue-600 font-semibold">💰 $<%= house.price %></p>
           <div class="flex gap-2">
             <a class="bg-blue-500 py-3 px-4 text-white rounded-xl w-[15vh] h-[8vh]" href="/homeList/<%=house._id%>">Details</a>
-             <%- include('../partials/fav.ejs') %>
+            <form action="/favorite" method="POST">
+              <button type="submit" class="bg-green-500 text-white font-semibold py-3 px-4 rounded-xl hover:bg-green-600 transition"> Add to Favorite </button>
+              <input type="hidden" name="id" value="<%= house._id %>">
+            </form>
           </div>
         </div>
       </div>
