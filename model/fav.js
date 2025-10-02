@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const fav = new mongoose.Schema({
     _id:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'homes',
+        ref:'userHome',
         required:true
     }
 })
