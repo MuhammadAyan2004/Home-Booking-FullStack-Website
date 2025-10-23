@@ -4,6 +4,9 @@ exports.getLogin = (req,res)=>{
         activePage: 'login'
     })
 }
+exports.postLogin = (req,res)=>{
+    res.redirect('/')
+}
 exports.getSignUp = (req,res)=>{
     res.render('auth/signup',{
         pageTitle: "login",
