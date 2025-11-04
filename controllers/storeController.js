@@ -4,7 +4,8 @@ const fav = require("../model/fav")
 exports.getIndex = (req,res)=>{
     res.render('index',{
         pageTitle: "Homies",
-        activePage: "index"
+        activePage: "index",
+        isLoggedIn:false
     })
 }
 exports.getHomes = async (req,res)=>{
@@ -13,6 +14,7 @@ exports.getHomes = async (req,res)=>{
         pageTitle: "Homes",
         activePage: "homeList",
         home:homes,
+        isLoggedIn:false
     })
 }
 exports.getdetails = async (req,res)=>{
@@ -22,6 +24,7 @@ exports.getdetails = async (req,res)=>{
         pageTitle: "Home detail",
         activePage: "homeList",
         home:home,
+        isLoggedIn:false
     })
 }
 exports.getFav = async (req,res)=>{
@@ -30,7 +33,8 @@ exports.getFav = async (req,res)=>{
         res.render('store/fav',{
             pageTitle: "Favorite home",
             activePage: "favorite",
-            booking:favs
+            booking:favs,
+            isLoggedIn:false
         })
     }
     catch(err){
@@ -72,6 +76,7 @@ exports.postDelFav = async (req,res)=>{
 exports.getBook = (req,res)=>{
     res.render('store/book',{
         pageTitle: "Booking",
-        activePage: "booking"
+        activePage: "booking",
+        isLoggedIn:false
     })
 }
