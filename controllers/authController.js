@@ -3,25 +3,53 @@ const signUp = require("../model/signModel")
 const bcrypt = require("bcrypt")
 
 exports.getLogin = (req,res)=>{
+    console.log('ma login ka page ka andar aa gaya hun');
     res.render('auth/login',{
         pageTitle: "login",
         activePage: 'login',
-        isLoggedIn:false
+        isLoggedIn:req.session.isLoggedIn || false,
+        err:{},
     })
 }
-exports.postLogin = (req,res)=>{
-    res.render('index',{
-        pageTitle: "homies",
-        activePage: 'index',
-        isLoggedIn:true
+exports.postLogin = async (req,res)=>{
+    const {Email,Password} = req.body
+    console.log(Email,Password);
+    const user = await signUp.findOne({email:Email})
+    console.log(user);
+    if(!user){
+        return res.status(403).render('auth/login',{
+            pageTitle: "login",
+            activePage: 'login',
+            isLoggedIn:false,
+            err:["Invalid email and password please try again"]
+        })    
+    }
+    const isMatch = await bcrypt.compare(Password,user.password)
+    if(!isMatch){
+        return res.status(403).render('auth/login',{
+            pageTitle: "login",
+            activePage: 'login',
+            isLoggedIn:false,
+            err:["Invalid email and password please try again"]
+        })    
+    }
+    req.session.isLoggedIn = true
+    req.session.user = user;
+    await req.session.save()
+    res.redirect('/')
+}
+exports.postLogout = (req,res)=>{
+    req.session.destroy(()=>{
+        res.redirect('/login')
     })
-    // res.redirect('/')
 }
 exports.getSignUp = (req,res)=>{
     res.render('auth/signup',{
         pageTitle: "login",
         activePage: 'signup',
         isLoggedIn:false,
+        Error: [],
+        oldInputs:{FirstName:'',lastName:'',Email:'',password:'',confirmPassword:'',accountType:'',authenticate:''},
     })
 }
 exports.postSignUp = [
@@ -84,6 +112,8 @@ exports.postSignUp = [
             pageTitle: "login",
             activePage: 'signup',
             isLoggedIn:false,
+            Error: error.mapped(),
+            oldInputs:req.body
         })
         }
 
@@ -98,11 +128,13 @@ exports.postSignUp = [
             return User.save()
         }).then(()=>{
             res.redirect('/login')
-        }).catch(()=>{
+        }).catch(err =>{
             return res.status(404).render('auth/signup',{
             pageTitle: "login",
             activePage: 'signup',
             isLoggedIn:false,
+            Error: [err.message],
+            oldInputs:req.body
         })
         })
 
