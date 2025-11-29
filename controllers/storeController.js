@@ -5,7 +5,7 @@ exports.getIndex = (req,res)=>{
     res.render('index',{
         pageTitle: "Homies",
         activePage: "index",
-        isLoggedIn:false
+        isLoggedIn:req.session.isLoggedIn
     })
 }
 exports.getHomes = async (req,res)=>{
@@ -14,7 +14,7 @@ exports.getHomes = async (req,res)=>{
         pageTitle: "Homes",
         activePage: "homeList",
         home:homes,
-        isLoggedIn:false
+        isLoggedIn:req.session.isLoggedIn
     })
 }
 exports.getdetails = async (req,res)=>{
@@ -24,7 +24,7 @@ exports.getdetails = async (req,res)=>{
         pageTitle: "Home detail",
         activePage: "homeList",
         home:home,
-        isLoggedIn:false
+        isLoggedIn:req.session.isLoggedIn
     })
 }
 exports.getFav = async (req,res)=>{
@@ -34,7 +34,7 @@ exports.getFav = async (req,res)=>{
             pageTitle: "Favorite home",
             activePage: "favorite",
             booking:favs,
-            isLoggedIn:false
+            isLoggedIn:req.session.isLoggedIn
         })
     }
     catch(err){
@@ -77,6 +77,6 @@ exports.getBook = (req,res)=>{
     res.render('store/book',{
         pageTitle: "Booking",
         activePage: "booking",
-        isLoggedIn:false
+        isLoggedIn:req.session.isLoggedIn
     })
 }
