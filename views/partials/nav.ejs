@@ -9,7 +9,8 @@
       </a>
 
       <!-- Nav Links -->
-      <ul class="flex space-x-6 text-sm font-medium">
+       <% if(isLoggedIn) {%>
+        <ul class="flex space-x-6 text-sm font-medium">
             <li>
               <a href="/homeList" class="<%= activePage === 'homeList' ? 'text-yellow-400 border-b-2 border-yellow-400' : 'hover:text-red-500' %> transition pb-1">Home List</a>
             </li>
@@ -25,10 +26,11 @@
             <li>
               <a href="/host/homes" class="<%= activePage === 'homeAdded' ? 'text-yellow-400 border-b-2 border-yellow-400' : 'hover:text-red-500' %> transition pb-1">Host Homes</a>
             </li>
-      </ul>
-    </div>
-
-    <!-- Right Side: Auth Buttons -->
+          </ul>
+        <% }%>
+      </div>
+      
+      <!-- Right Side: Auth Buttons -->
     <div class="flex items-center space-x-4">
       <% if(!isLoggedIn) {  %>
         <a href="/signUp" class="px-4 py-1 rounded-lg bg-red-600 text-gray-900 hover:bg-red-500 transition">Sign Up</a>
