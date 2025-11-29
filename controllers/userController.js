@@ -6,7 +6,7 @@ exports.getRegistration = (req,res)=>{
         activePage: "index",
         edithome:false,
         editing:false,
-        isLoggedIn:false
+        isLoggedIn:req.session.isLoggedIn
     })
 }
 
@@ -17,7 +17,7 @@ exports.postRegistration = (req,res)=>{
     res.render('user/registerhome',{
         pageTitle: "registered",
         activePage: "index",
-        isLoggedIn:false
+        isLoggedIn:req.session.isLoggedIn
     })
 }
 exports.addedHome = async (req,res)=>{
@@ -26,7 +26,7 @@ exports.addedHome = async (req,res)=>{
         booking:home,
         pageTitle: "Homies",
         activePage: "index",
-        isLoggedIn:false
+        isLoggedIn:req.session.isLoggedIn
     })
 }
 
@@ -43,7 +43,7 @@ exports.getEdithome =(req,res)=>{
             activePage: "index",
             edithome:home,
             editing:edit,
-            isLoggedIn:false
+            isLoggedIn:req.session.isLoggedIn
         })
     })
     .catch(err=>{
